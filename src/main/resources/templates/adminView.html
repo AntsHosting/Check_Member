@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--Ô tự sửa lại link cho phùi hợp với file của ông-->
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/static/css.css}" />
+</head>
+<body>
+<div>
+    <form action="/Admin_View" id="form1" method="post">
+        <label for="mssv">Mã số sinh viên:</label>
+        <input type="text" id="mssv" name="mssv">
+        <label for="name">Họ và tên:</label>
+        <input type="text" id="name" name="name">
+        <label for="role">Chức vụ:</label>
+        <input type="text" id="role" name="role">
+
+        <input type="submit" value="Submit">
+    </form>
+</div>
+<br><br>
+<hr>
+<table border="1">
+    <thead>
+    <tr>
+        <th>MSSV</th>
+        <th>Họ và tên</th>
+        <th>Chức vụ</th>
+        <th>Ngày tham gia</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="member : ${members}">
+        <td th:text="${member.mssv}"></td>
+        <td th:text="${member.name}"></td>
+        <td th:text="${member.role}"></td>
+        <!-- Sử dụng Thymeleaf Expression để định dạng ngày tháng -->
+        <td>
+            <span th:text="${#temporals.format(member.timeJoin, 'yyyy-MM-dd HH:mm:ss')}"></span>
+        </td>
+        <td>
+            <button onclick="deleteMember(this)" th:attr="data-mssv=${member.mssv}">Delete</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<script>
+    function deleteMember(button) {
+        var mssv = button.getAttribute('data-mssv');
+        if (confirm('Are you sure you want to delete ' + mssv + ' member?')) {
+            fetch('/Admin_View/' + mssv, {
+                method: 'DELETE'
+            })
+            .then(response => {
+                if (response.ok) {
+                    window.location.reload();
+                } else {
+                    alert('Failed to delete member.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to delete member.');
+            });
+        }
+    }
+</script>
+</body>
+</html>

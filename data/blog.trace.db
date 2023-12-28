@@ -1,0 +1,19 @@
+2023-12-28 13:02:14.733769+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MEMBERS" not found (this database is empty); SQL statement:
+SELECT *
+        FROM MEMBERS; [42104-224]
+2023-12-28 13:07:47.034411+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MEMBERS" not found (this database is empty); SQL statement:
+SELECT *
+        FROM MEMBERS; [42104-224]
+2023-12-28 13:07:47.119305+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MEMBERS" not found (this database is empty); SQL statement:
+SELECT *
+        FROM MEMBERS; [42104-224]
+2023-12-28 13:07:49.359067+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MEMBERS" not found (this database is empty); SQL statement:
+SELECT *
+        FROM MEMBERS; [42104-224]
+2023-12-28 13:11:43.398924+07:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MEMBERS" not found (this database is empty); SQL statement:
+select * from members [42104-224]

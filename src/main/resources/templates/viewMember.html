@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--Ô tự sửa lại link cho phùi hợp với file của ông-->
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/static/css.css}" />
+</head>
+<body>
+<h1>Xin chào</h1>
+<!--Ô bỏ đống div dưới cũng được miễm ô thấy đẹp thì giữ thui :>-->
+<!--Web này có tính năng tự động reload cập nhập dữ liệu sau 10 giây :>-->
+<div th:each="member : ${members}">
+    <div class="post-preview">
+        <a href="#">
+            <h2 class="post-title" th:text="${member.mssv}"></h2>
+            <h3 class="post-subtitle" th:text="${member.name}"></h3>
+        </a>
+        <p class="post-meta" th:text="'Posted by ' + ${member.role}"></p>
+    </div>
+    <hr/>
+</div>
+<table border="1">
+    <thead>
+    <tr>
+        <th>MSSV</th>
+        <th>Họ và tên</th>
+        <th>Chức vụ</th>
+        <th>Ngày tham gia</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="member : ${members}">
+        <td th:text="${member.mssv}"></td>
+        <td th:text="${member.name}"></td>
+        <td th:text="${member.role}"></td>
+        <td>
+            <span th:text="${#temporals.format(member.timeJoin, 'yyyy-MM-dd HH:mm:ss')}"></span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br><br>
+<script>
+    // Hàm để reload trang sau mỗi 5 phút (300,000 mili giây)
+    function reloadPage() {
+        setTimeout(function() {
+            window.location.reload(true); // reload trang
+        }, 10000); // 10 giây
+    }
+
+    // Gọi hàm reloadPage khi trang được load hoàn tất
+    window.onload = function() {
+        reloadPage();
+    };
+</script>
+
+</body>
+</html>

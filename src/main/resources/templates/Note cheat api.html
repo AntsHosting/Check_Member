@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--Ô tự sửa lại link cho phùi hợp với file của ông-->
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/static/css.css}" />
+</head>
+<body>
+<div>
+    <form action="/Admin_View" id="form1" method="post" onsubmit="reloadPage()">
+        <label for="mssv">Mã số sinh viên:</label>
+        <input type="text" id="mssv" name="mssv">
+        <label for="name">Họ và tên:</label>
+        <input type="text" id="name" name="name">
+        <label for="role">Chức vụ:</label>
+        <input type="text" id="role" name="role">
+
+        <input type="submit" value="Submit">
+    </form>
+</div>
+<hr>
+<table border="1">
+    <!-- Table content -->
+</table>
+
+<script>
+    function reloadPage() {
+        // Reload the page after form submission
+        window.location.href = '/Admin_View';
+    }
+</script>
+
+</body>
+</html>
+
+<!--Hoặc-->
+<!--
+@PostMapping(value = "/Admin_View")
+@ResponseBody
+public void addMember(@RequestParam(name = "mssv") String mssv,
+                            @RequestParam(name = "name") String name,
+                            @RequestParam(name = "role") String role){
+    Membership newMember = memberManagerService.addMember(mssv, name, role);
+    // Thêm script JavaScript để reload trang
+    // Đây chỉ là ví dụ, cần kiểm tra xem cú pháp này có phù hợp với mã HTML của bạn không
+    return "<script>window.location.href = '/Admin_View';</script>";
+}
+-->
